@@ -1,19 +1,19 @@
 [app]
 
 # (str) Title of your application
-title = ToDo BzQuatre
+title = Hi BzQuatre
 
 # (str) Package name
-package.name = bztodo
+package.name = bzhi
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = bzquatre.com
+package.domain = com.bzquatre.hi
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,db
+source.include_exts = py,png,kv,atlas
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -101,7 +101,7 @@ fullscreen = 0
 #android.features = android.hardware.usb.host
 
 # (int) Target Android API, should be as high as possible.
-#android.api = 31
+#android.api = 21
 
 # (int) Minimum API your APK / AAB will support.
 #android.minapi = 21
