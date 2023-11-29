@@ -1,71 +1,114 @@
-MDFloatLayout:
-    MDLabel:
-        id: task_label
-        halign: 'center'
-        markup: True
-        text: "[u][size=48][b]Task Manager[/b][/size][/u]"
-        pos_hint: {'y': .45}
+ScreenManager:
+    MDScreen:
+        name: "login"
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: '15dp'
+            md_bg_color: [1,1,1,1]
+            AsyncImage:
+                source: 'assets/images/logo.png'
+                text: 'Your Image'
+            AsyncImage:
+                source: 'assets/images/login.png'
+                text: 'Your Image'
+            MDLabel:
+                text:"Log-In"
+                theme_text_color:"Primary"
+                font_size:28
+                bold: True 
+            MDTextField:
+                id: email_input
+                hint_text: "Email"
+                required: True
+                helper_text: "user@gmail.com"
+                validator: "email"
 
-    ScrollView:
-        pos_hint: {'center_y': .5, 'center_x': .5}
-        size_hint: .9, .8
+            MDTextField:
+                id: password_input
+                hint_text: "Password"
+                password: True
+                required: True
+                helper_text_mode: "on_error"
+                icon_right: "eye-off"
+                on_icon_right: app.toggle_password_visibility()
 
-        MDList:
-            id: container
-
-    MDFloatingActionButton:
-        icon: 'plus-thick'
-        on_release: app.show_task_dialog()
-        elevation_normal: 12
-        pos_hint: {'x': .45 , 'y': .04}
-
-<DialogContent>:
-    orientation: "vertical"
-    spacing: "10dp"
-    size_hint: 1, None
-    height: "130dp"
-
-    GridLayout:
-        rows: 1
-
-        MDTextField:
-            id: task_text
-            hint_text: "Add Task..."
-            pos_hint: {"center_y": .4}
-            max_text_length: 50
-            on_text_validate: (app.add_task(task_text, date_text.text), app.close_dialog())
-
-        MDIconButton:
-            icon: 'calendar'
-            on_release: root.show_date_picker()
-            padding: '10dp'
-
-    MDLabel:
-        spacing: '10dp'
-        id: date_text
-
-    BoxLayout:
-        orientation: 'horizontal'
-
-        MDRaisedButton:
-            text: "SAVE"
-            on_release: (app.add_task(task_text, date_text.text), app.close_dialog())
-        MDFlatButton:
-            text: 'CANCEL'
-            on_release: app.close_dialog()
+            MDFillRoundFlatButton:
+                text:"Sign in"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                padding: 50, 0, 50, 0 
+                on_release: app.login()
+                
+                width: self.parent.width * 0.8
+                size_hint_x: 0.8 
+            MDLabel:
+                id: status_label
+                text: ""
+                theme_text_color: "Error"
+            MDTextButton:
+                id: go_sign_in
+                text: "Don't have an account ? Sign Up"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_release: root.current = 'registre'
+    MDScreen:
+        name: "registre"
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: '15dp'
+            md_bg_color: [1,1,1,1]
+            AsyncImage:
+                source: 'assets/images/logo.png'
+                text: 'Your Image'
+            AsyncImage:
+                source: 'assets/images/login.png'
+                text: 'Your Image'
+            MDTextField:
+                id: username_input
+                hint_text: "Username"
+                required: True
+                helper_text_mode: "on_error"
+                line_color_normal: 1, 0, 1, 1  # Red color when not focused
+                line_color_focus: 0, 1, 0, 1  # Green color when focused
             
-<ListItemWithCheckbox>:
-    id: the_list_item
-    markup: True
+            MDTextField:
+                id: email_input
+                hint_text: "Email"
+                required: True
+                helper_text_mode: "on_error"
+                line_color_normal: 1, 0, 1, 1  # Red color when not focused
+                line_color_focus: 0, 1, 0, 1  # Green color when focused
 
-    LeftCheckbox:
-        id: check
-        on_release:
-            root.mark(check, the_list_item)
+            MDTextField:
+                id: password_input
+                hint_text: "Password"
+                password: True
+                required: True
+                helper_text_mode: "on_error"
+                icon_right:"assets/images/logo.png"
+            MDTextField:
+                id: confirme_password_input
+                hint_text: "Password"
+                password: True
+                required: True
+                helper_text_mode: "on_error"
+                icon_right:"assets/images/logo.png"
+            MDRaisedButton:
+                text:"Sign Up"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_release: app.login()
+            MDLabel:
+                id: status_label
+                text: ""
+                theme_text_color: "Error"
+            MDLabel:
+                id: go_sign_in
+                text: "you have an account"
+    MDScreen:
+        name:"main"
+        MDFloatLayout:
+            md_bg_color: [1,1,1,1]
+            MDRaisedButton:
+                text:"Logout"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_release: app.logout()
 
-    IconRightWidget:
-        icon: 'trash-can-outline'
-        theme_text_color: "Custom"
-        text_color: 1, 0, 0, 1
-        on_release:
-            root.delete_item(the_list_item)
+
