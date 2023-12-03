@@ -1,114 +1,172 @@
 ScreenManager:
-    MDScreen:
+    LoginScreen:
         name: "login"
-        MDBoxLayout:
-            orientation: 'vertical'
-            padding: '15dp'
-            md_bg_color: [1,1,1,1]
-            AsyncImage:
-                source: 'assets/images/logo.png'
-                text: 'Your Image'
-            AsyncImage:
-                source: 'assets/images/login.png'
-                text: 'Your Image'
-            MDLabel:
-                text:"Log-In"
-                theme_text_color:"Primary"
-                font_size:28
-                bold: True 
-            MDTextField:
-                id: email_input
-                hint_text: "Email"
-                required: True
-                helper_text: "user@gmail.com"
-                validator: "email"
 
-            MDTextField:
-                id: password_input
-                hint_text: "Password"
-                password: True
-                required: True
-                helper_text_mode: "on_error"
-                icon_right: "eye-off"
-                on_icon_right: app.toggle_password_visibility()
-
-            MDFillRoundFlatButton:
-                text:"Sign in"
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                padding: 50, 0, 50, 0 
-                on_release: app.login()
-                
-                width: self.parent.width * 0.8
-                size_hint_x: 0.8 
-            MDLabel:
-                id: status_label
-                text: ""
-                theme_text_color: "Error"
-            MDTextButton:
-                id: go_sign_in
-                text: "Don't have an account ? Sign Up"
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                on_release: root.current = 'registre'
-    MDScreen:
-        name: "registre"
-        MDBoxLayout:
-            orientation: 'vertical'
-            padding: '15dp'
-            md_bg_color: [1,1,1,1]
-            AsyncImage:
-                source: 'assets/images/logo.png'
-                text: 'Your Image'
-            AsyncImage:
-                source: 'assets/images/login.png'
-                text: 'Your Image'
-            MDTextField:
-                id: username_input
-                hint_text: "Username"
-                required: True
-                helper_text_mode: "on_error"
-                line_color_normal: 1, 0, 1, 1  # Red color when not focused
-                line_color_focus: 0, 1, 0, 1  # Green color when focused
-            
-            MDTextField:
-                id: email_input
-                hint_text: "Email"
-                required: True
-                helper_text_mode: "on_error"
-                line_color_normal: 1, 0, 1, 1  # Red color when not focused
-                line_color_focus: 0, 1, 0, 1  # Green color when focused
-
-            MDTextField:
-                id: password_input
-                hint_text: "Password"
-                password: True
-                required: True
-                helper_text_mode: "on_error"
-                icon_right:"assets/images/logo.png"
-            MDTextField:
-                id: confirme_password_input
-                hint_text: "Password"
-                password: True
-                required: True
-                helper_text_mode: "on_error"
-                icon_right:"assets/images/logo.png"
-            MDRaisedButton:
-                text:"Sign Up"
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                on_release: app.login()
-            MDLabel:
-                id: status_label
-                text: ""
-                theme_text_color: "Error"
-            MDLabel:
-                id: go_sign_in
-                text: "you have an account"
-    MDScreen:
+    MainScreen:
         name:"main"
-        MDFloatLayout:
-            md_bg_color: [1,1,1,1]
-            MDRaisedButton:
-                text:"Logout"
-                pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                on_release: app.logout()
+        
+<MainScreen> 
+    BoxLayout:
+        orientation:'vertical'
+        MDTopAppBar:
+            title: "GetCV"
+            md_bg_color:53/255, 2/255, 2/255, 1
+            right_action_items: [["menu", lambda x:0]]# app.callback(x)]]
+        MDBottomNavigation:
+            panel_color: 53/255, 2/255, 2/255, 1
+            text_color_active: "orange"
+            text_color_normal: "lightgrey"
+            MDBottomNavigationItem:
+                name: 'profile'
+                icon: 'account'
+                BoxLayout:
+                    orientation:'vertical'
+                    Image:
+                        id: circular_image
+                        source: 'assets/images/Photo.png'  # Default or placeholder image
+                        size_hint: None, None
+                        size: dp(100), dp(100)
+                        pos_hint: {'center_x': 0.5}
+                        allow_stretch: True
+                        keep_ratio: True
+                    MDTextField:
+                        id: name_cv
+                        hint_text: "Name"
+                    MDTextField:
+                        id: job_cv
+                        hint_text: "Job"
+                    MDTextField:
+                        id: email_cv
+                        hint_text: "Email"
+                        required: True
+                        helper_text: "user@gmail.com"
+                        validator: "email"
+                    
+                    MDTextField:
+                        id: phone_cv
+                        hint_text: "Phon"
+                    MDTextField:
+                        id: website_cv
+                        hint_text: "Website"
+            MDBottomNavigationItem:
+                name: 'work'
+                icon: 'briefcase'
 
+                MDLabel:
+                    text: 'Works'
+                    halign: 'center'
+
+            MDBottomNavigationItem:
+                name: 'educ'
+                icon: 'school'
+
+                MDLabel:
+                    text: 'Eductions'
+                    halign: 'center'
+
+            MDBottomNavigationItem:
+                name: 'lang'
+                icon: 'translate'
+
+                MDLabel:
+                    text: 'Language'
+                    halign: 'center'
+            MDBottomNavigationItem:
+                name: 'skills'
+                icon: 'pencil-ruler'
+                ScrollView:
+                    GridLayout:
+                        cols: 1
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(16)
+
+                        SkillItem:
+                            name: 'Python'
+                            level: 80
+
+                        SkillItem:
+                            name: 'JavaScript'
+                            level: 60
+
+                        SkillItem:
+                            name: 'KivyMD'
+                            level: 90
+<LoginScreen>
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: '15dp'
+        md_bg_color: [1,1,1,1]
+        AsyncImage:
+            source: 'assets/images/logo.png'
+            text: 'Your Image'
+        AsyncImage:
+            source: 'assets/images/login.png'
+            text: 'Your Image'
+        MDLabel:
+            text:"Log-In"
+            theme_text_color:"Primary"
+            font_size:28
+            bold: True 
+        MDTextField:
+            id: email_input
+            hint_text: "Email"
+            required: True
+            helper_text: "user@gmail.com"
+            validator: "email"
+        MDRelativeLayout:
+            MDTextField:
+                id: password_input
+                hint_text: "Password"
+                password: True
+                password: True
+                #icon_left: "key-variant"
+                helper_text_mode: "on_error"
+            MDIconButton:
+                icon: "eye-off"
+                pos_hint: {"center_y": .5}
+                pos: password_input.width - self.width + dp(8), 0
+                theme_text_color: "Hint"
+                on_release:
+                    self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+                    password_input.password = False if password_input.password is True else True
+
+        MDFillRoundFlatButton:
+            text:"Sign in"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            padding: 50, 0, 50, 0 
+            on_release: app.login(email_input.text, password_input.text)
+            
+            width: self.parent.width * 0.8
+            size_hint_x: 0.8 
+        MDLabel:
+            id: status_label
+            text: ""
+            theme_text_color: "Error"
+
+
+
+
+<SkillItem>:
+    size_hint_y: None
+    height: dp(120)
+    padding: dp(8)
+
+    BoxLayout:
+        orientation: 'vertical'
+        MDLabel:
+            text: "zaki"
+            theme_text_color: 'Primary'
+            font_size: '18sp'
+            size_hint_x: 0.6
+
+        MDProgressBar:
+            value: 50
+            max: 100
+            size_hint_x: 0.4
+
+    MDIconButton:
+        text: 'Edit'
+        icon: 'pencil'
+        on_release: app.edit_skill(root.name)
 

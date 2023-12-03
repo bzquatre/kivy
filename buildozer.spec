@@ -14,7 +14,7 @@ source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
 source.include_exts = py,png,kv,atlas
-
+source.include_patterns = assets/images/*
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
 
@@ -37,17 +37,17 @@ version = 1.0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,kivy,kivymd,sqlite3
+requirements = python3,kivy,kivymd,pyrebase4
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = logo.png
+presplash.filename = assets/images/logo.png
 
 # (str) Icon of the application
-icon.filename = logo.png
+icon.filename = assets/images/logo.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
