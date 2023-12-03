@@ -1,22 +1,21 @@
 [app]
 
 # (str) Title of your application
-title = Hi BzQuatre
+title = GetCV
 
 # (str) Package name
-package.name = bzhi
+package.name = getcv
 
 # (str) Package domain (needed for android/ios packaging)
-package.domain = com.bzquatre.hi
+package.domain = com.bzquatre.getcv
 
 # (str) Source code where the main.py live
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,kv,atlas
-source.include_patterns = assets/images/*
+source.include_exts = py,png,json,kv,atlas
 # (list) List of inclusions using pattern matching
-#source.include_patterns = assets/*,images/*.png
+source.include_patterns = assets/*,images/*.png
 
 # (list) Source files to exclude (let empty to not exclude anything)
 #source.exclude_exts = spec,md
@@ -29,7 +28,7 @@ source.include_patterns = assets/images/*
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 1.0.1
+version = 1.0.2
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -61,7 +60,7 @@ orientation = portrait
 #
 
 #
-# author = © Copyright Info
+author = © Copyright BzQuatre
 
 # change the major version of python used by the app
 osx.python_version = 3
@@ -81,7 +80,7 @@ fullscreen = 0
 # red, blue, green, black, white, gray, cyan, magenta, yellow, lightgray,
 # darkgray, grey, lightgrey, darkgrey, aqua, fuchsia, lime, maroon, navy,
 # olive, purple, silver, teal.
-#android.presplash_color = #FFFFFF
+android.presplash_color = #000000
 
 # (string) Presplash animation using Lottie format.
 # see https://lottiefiles.com/ for examples and https://airbnb.design/lottie/
@@ -95,8 +94,7 @@ fullscreen = 0
 
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions/#build-options-1 for all the supported syntaxes and properties)
-#android.permissions = android.permission.INTERNET, (name=android.permission.WRITE_EXTERNAL_STORAGE;maxSdkVersion=18)
-
+android.permissions =android.permission.INTERNET
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
 
